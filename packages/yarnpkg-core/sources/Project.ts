@@ -991,9 +991,10 @@ export class Project {
         else
           this.storedChecksums.delete(pkg.locatorHash);
 
-        if (fetchResult.releaseFs) {
+        if (fetchResult.releaseFs)
           fetchResult.releaseFs();
-        }
+
+        report.reportInfo(MessageName.LIFECYCLE_SCRIPT, `${structUtils.prettyLocator(this.configuration, pkg)}: Done with ${formatUtils.pretty(this.configuration, `fetch`, formatUtils.Type.SCOPE)}`);
       }).finally(() => {
         progress.tick();
       })));
