@@ -217,6 +217,7 @@ export async function loadPatchFiles(parentLocator: Locator | null, patchPaths: 
 }
 
 export async function extractPackageToDisk(locator: Locator, {cache, project}: {cache: Cache, project: Project}) {
+  console.log(`EXTRACT ${structUtils.prettyLocator(project.configuration, locator)}`);
   const pkg = project.storedPackages.get(locator.locatorHash);
   if (typeof pkg === `undefined`)
     throw new Error(`Assertion failed: Expected the package to be registered`);
@@ -273,6 +274,7 @@ export async function extractPackageToDisk(locator: Locator, {cache, project}: {
   }
 
   xfs.detachTemp(temp);
+  console.log(`EXTRACTED ${structUtils.prettyLocator(project.configuration, locator)}`);
   return userPath;
 }
 
