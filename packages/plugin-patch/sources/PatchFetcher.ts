@@ -40,6 +40,7 @@ export class PatchFetcher implements Fetcher {
   }
 
   private async patchPackage(locator: Locator, opts: FetchOptions) {
+    console.log("START PATCH APPLY");
     const {parentLocator, sourceLocator, sourceVersion, patchPaths} = patchUtils.parseLocator(locator);
     const patchFiles = await patchUtils.loadPatchFiles(parentLocator, patchPaths, opts);
 
@@ -116,6 +117,8 @@ export class PatchFetcher implements Fetcher {
 
       patchedPackage.saveAndClose();
     }
+
+    console.log("END PATCH APPLY");
 
     return new ZipFS(currentFile, {
       level: opts.project.configuration.get(`compressionLevel`),
