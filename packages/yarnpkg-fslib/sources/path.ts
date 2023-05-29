@@ -66,6 +66,8 @@ ppath.resolve = (...segments: Array<PortablePath | Filename>) => {
   }
 };
 
+ppath.relative = (from: Path, to: Path) => path.posix.relative(ppath.resolve(from), ppath.resolve(to));
+
 const contains = function <T extends Path>(pathUtils: PathUtils<T>, from: T, to: T) {
   from = pathUtils.normalize(from);
   to = pathUtils.normalize(to);
